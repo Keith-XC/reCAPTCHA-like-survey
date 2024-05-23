@@ -50,9 +50,12 @@ def update_image(index):
 # Function to handle button click
 def button_click(digit):
     global current_index
+    path = image_paths[current_index]
     data = {
-        "image_path": image_paths[current_index],
-        "label": str(digit)
+        "model": model,
+        "image_path": path,
+        "label": str(digit),
+        "accepted": (str(digit) == str(path.split('/')[3]))
     }
     with open(f'./{model}-labels.txt', 'a') as file:
         json.dump(data, file)

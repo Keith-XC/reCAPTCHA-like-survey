@@ -3,7 +3,7 @@ from PIL import Image, ImageTk
 import os, json, random
 
 # model = 'HQ'
-model = 'LQ'
+# model = 'LQ'
 
 image_paths = []
 model_folder = os.path.join('./img', model)

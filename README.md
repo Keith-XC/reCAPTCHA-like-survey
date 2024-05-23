@@ -1,6 +1,6 @@
 # Human Classifier
 
-A simple Python app to classify GAN-generated images. There are two models to choose from: a high-quality (HQ) model with challenging images and a low-quality (LQ) model with relatively more straightforward digits. Each model has a total of nine classes, with each class containing 100 images.
+A simple Python app to classify GAN-generated images. There are two models to choose from: a high-quality (HQ) model with challenging images and a low-quality (LQ) model with relatively more straightforward digits. Each model has a total of 10 classes, with each class containing 100 images.
 ## Installation
 
 ```bash
@@ -21,6 +21,6 @@ pip install pillow
   ```bash
   python human_classifier.py
   ```
-* Use the **the number keys** <kbd>1-9</kbd> or the GUI to classify the images. The <kbd>enter</kbd> key is mapped to the unknown class.
+* Use the **the number keys** <kbd>0-9</kbd> or the GUI to classify the images. The <kbd>enter</kbd> key is mapped to the unknown class.
 
 * Each classification will be saved as a new line in the TXT file named `<MODEL>-labels.txt` in the top directory.

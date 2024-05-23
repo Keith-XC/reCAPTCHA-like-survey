@@ -2,7 +2,7 @@
 
 A simple Python app to classify GAN-generated images. There are two models to choose from: a high-quality model (HQ) with **challenging** images and a low-quality model (LQ) with relatively more straightforward digits. Each model has a total of 10 classes, with each class containing 100 images.
 
-![UI](./UI.jpg){:height="50%" width="50%"}
+![UI](./UI.jpg)
 ## Installation
 
 ```bash

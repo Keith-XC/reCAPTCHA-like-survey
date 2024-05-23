@@ -23,4 +23,4 @@ pip install pillow
   ```
 * Use the **the number keys** <kbd>1-9</kbd> or the GUI to classify the images. The <kbd>enter</kbd> key is mapped to the unknown class.
 
-* The results will be saved in a TXT file named `<MODEL>-labels.txt`
+* Each classification will be saved as a new line in the TXT file named `<MODEL>-labels.txt` in the top directory.

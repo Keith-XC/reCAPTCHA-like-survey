@@ -1,6 +1,6 @@
 # Human Classifier
 
-A simple Python app to classify GAN-generated images. There are two models to choose from: a high-quality (HQ) model with challenging images and a low-quality (LQ) model with relatively more straightforward digits. Each model has a total of 10 classes, with each class containing 100 images.
+A simple Python app to classify GAN-generated images. There are two models to choose from: a high-quality model (HQ) with **challenging** images and a low-quality model (LQ) with relatively more straightforward digits. Each model has a total of 10 classes, with each class containing 100 images.
 ## Installation
 
 ```bash

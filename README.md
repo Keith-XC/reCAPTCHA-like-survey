@@ -12,7 +12,7 @@ pip install pillow
   ```bash
   git clone https://github.com/WafaAmr/Human-Classifier.git
   ```
-* Uncomment one of the models in the code
+* Uncomment one of the models in the `human_classifier.py` file
   ```python
   5: # model = 'HQ'
   6: # model = 'LQ'

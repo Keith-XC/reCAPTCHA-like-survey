@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import messagebox
 from PIL import Image, ImageTk
 import os, json, random
 
@@ -62,7 +63,7 @@ def button_click(digit):
         file.write('\n')
     current_index += 1
     if current_index >= len(image_paths):
-        tk.messagebox.showinfo("Result", "No more images left. Thank you!")
+        messagebox.showinfo("Result", "No more images left. Thank you!")
         root.destroy()
     else:
         update_image(current_index)

@@ -2,16 +2,22 @@
 # reCAPTCHA-style Human Classifier App 
 
 ---
+## For Human Accessor
+* Don't recognize trucks as automobile, there is another category for truck
+* Don't recognize horse as deer, there are two categories
+* For Linux and Windows user, please use download the binary in /dist/
+* For **MacOS**  user, binary does not work, since we don't have certificates from an Apple Developer Account. So please run reCAPTCHA.py directly
+
 
 ## Overview
 
 This App is a Tkinter-based application designed to emulate a reCAPTCHA-style interface for validating AI-generated images. The app displays a **6x6** grid of images and prompts the user to select all images corresponding to a specific category.
-
-![UI](./UI.png)
-
 * There are **4** groups of images and **10** categories for each group.
 * Selected images are highlighted, and once selected and submitted, they cannot be chosen again in subsequent questions.
 * If there is no matching images for the class, just skip the question and press submit.
+
+![UI](./UI.png)
+
 
 ## Requirements
 
@@ -25,7 +31,7 @@ This App is a Tkinter-based application designed to emulate a reCAPTCHA-style in
 1. **Install Dependencies**:
    ```sh
    pip install pillow
-   pip install pyinstaller
+   pip install pyinstaller # only necessary for packaging
    ```
 
 2. **Prepare Images**:

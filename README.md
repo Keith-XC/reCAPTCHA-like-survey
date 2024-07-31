@@ -3,6 +3,8 @@
 
 ---
 ## For Human Accessor
+* The survey takes about 10 minutes
+* There are **4** groups of images and **10** categories for each group.
 * Don't recognize trucks as automobile, there is another category for truck
 * Don't recognize horse as deer, they are two categories
 * Please use download the binary in /dist/

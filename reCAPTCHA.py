@@ -6,11 +6,24 @@ import random
 import csv
 import glob
 import time
+import sys
+
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    try:
+        # PyInstaller creates a temp folder and stores path in _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
+
+image_folder = resource_path('mimicry_result')
 
 timestart_str = time.strftime("%m-%d %H:%M", time.localtime())
 INDEX = 0
-dataset = ['mimicry_result/cifar-10', 'mimicry_result/f-mnist', 'mimicry_result/mnist', 'mimicry_result/svhn']
-dataset_dj = [None, 'mimicry_result/DJ/f-mnist', 'mimicry_result/DJ/mnist', 'mimicry_result/DJ/svhn']
+dataset = ['cifar-10', 'f-mnist', 'mnist', 'svhn']
+dataset_dj = [None, 'DJ/f-mnist', 'DJ/mnist', 'DJ/svhn']
 categories = [["airplane", "automobile", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck"],
               ["T-shirt/top",
               "Trouser",
@@ -62,7 +75,7 @@ def enumerate_subfolders(root_folder, folder_depth, num_subfolders):
                 target_level_folders.append(image_paths[0])
 
     random.shuffle(target_level_folders)
-    return target_level_folders[: num_subfolders]
+    return target_level_folders[:num_subfolders]
 
 
 def record_csv(path, result):
@@ -98,14 +111,14 @@ class ReCAPTCHAApp:
     def reset_UI(self):
         if self.INDEX == 0:
             # cifar-10 only has mimicry result
-            self.image_paths = enumerate_subfolders(dataset[self.INDEX],
+            self.image_paths = enumerate_subfolders(image_folder + '/' + dataset[self.INDEX],
                                                     folder_depth=3,
                                                     num_subfolders=self.grid_size * self.grid_size)
         else:
-            self.image_paths = enumerate_subfolders(dataset[self.INDEX],
+            self.image_paths = enumerate_subfolders(image_folder + '/' + dataset[self.INDEX],
                                                     folder_depth=3,
                                                     num_subfolders=(self.grid_size * self.grid_size + 1)//2)
-            self.image_paths = self.image_paths + enumerate_subfolders(dataset_dj[self.INDEX],
+            self.image_paths = self.image_paths + enumerate_subfolders(image_folder + '/' + dataset_dj[self.INDEX],
                                                     folder_depth=0,
                                                     num_subfolders=self.grid_size * self.grid_size - (self.grid_size * self.grid_size + 1)//2)
             random.shuffle(self.image_paths)

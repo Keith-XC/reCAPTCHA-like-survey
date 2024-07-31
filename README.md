@@ -48,7 +48,7 @@ If you have packaged the application using PyInstaller:
    pyinstaller --onefile --windowed reCAPTCHA.py
    # Modify the .spec file according your needs
    # package it
-   pyinstaller reCAPTCHA.spec
+   pyinstaller recaptcha-survey.spec
    ```
 
 2. **Run the Executable**:

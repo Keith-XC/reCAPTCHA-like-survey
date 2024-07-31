@@ -5,7 +5,7 @@ a = Analysis(
     ['reCAPTCHA.py'],
     pathex=[],
     binaries=[],
-    datas=[(mimicry_result', 'mimicry_result')],
+    datas=[('mimicry_result','mimicry_result')],
     hiddenimports=['PIL._tkinter_finder', 'PIL._imagingtk', 'PIL.ImageTk'],
     hookspath=[],
     hooksconfig={},

@@ -46,6 +46,9 @@ categories = [["airplane", "automobile", "bird", "cat", "deer", "dog", "frog", "
                "7 in the middle",
                "8 in the middle",
                "9 in the middle"]]
+categories_str = ["airplane, automobile, bird, cat, deer, dog, frog, horse, ship, truck",
+                  "T-shirt/top, Trouser, Pullover, Dress, Coat, Sandal, Shirt, Sneaker, Bag, Ankle boot",
+                  "0, 1, 2, 3, 4, 5, 6, 7, 8, 9",   "0, 1, 2, 3, 4, 5, 6, 7, 8, 9 (only the digit in the middle)"]
 
 
 def enumerate_subfolders(root_folder, folder_depth, num_subfolders):
@@ -133,7 +136,8 @@ class ReCAPTCHAApp:
 
     def create_widgets(self):
         self.label = tk.Label(self.root, text=f"Select all images containing \n>>> {categories[self.INDEX][self.current_digit]} <<<\n " +
-                                               "Choose carefully, re-selection is not supported :)"
+                                               "All categories are mutually exclusive: \n" +
+                                               categories_str[self.INDEX]
                                               , font=("Helvetica", 16))
         self.label.pack(pady=10)
 
@@ -186,6 +190,10 @@ class ReCAPTCHAApp:
         self.selected_images.clear()
         self.current_digit += 1
         if self.current_digit > 9:
+            # store the unselected images
+            for idx in range(self.grid_size * self.grid_size):
+                if idx not in self.disabled_images.keys():
+                    record_csv(self.image_paths[idx], 'unknown')
             if self.INDEX < 3:
                 self.INDEX += 1
                 print("reset")
@@ -198,7 +206,8 @@ class ReCAPTCHAApp:
 
         else:
             self.label.config(text=f"Select all images containing \n>>> {categories[self.INDEX][self.current_digit]} <<<\n " +
-                                                "Choose carefully, re-selection is not supported :)")
+                                                "All categories are mutually exclusive: \n" +
+                                               categories_str[self.INDEX])
 
     def clear_widgets(self):
         for widget in self.root.winfo_children():

@@ -7,7 +7,7 @@
 * The survey takes about 10 minutes
 * There are **4** groups of images and **10** categories for each group.
 * Don't recognize trucks as automobile, there is another category for truck
-* Don't recognize horse as deer, they are two categories
+* Choose carefully, re-selection is not supported :)
 * For **MacOS** or **Linux** user, please give access in command line, if it doesn't save the csv file
    ```sh
    chmod +x <filename>

@@ -3,12 +3,16 @@
 
 ---
 ## For Human Accessor
+* Please use download the binary in /dist/
 * The survey takes about 10 minutes
 * There are **4** groups of images and **10** categories for each group.
 * Don't recognize trucks as automobile, there is another category for truck
 * Don't recognize horse as deer, they are two categories
-* Please use download the binary in /dist/
-* For **MacOS** or **Linux** user, please give access "chmod +x" if it doesn't save the csv file
+* For **MacOS** or **Linux** user, please give access in command line, if it doesn't save the csv file
+   ```sh
+   chmod +x <filename>
+   ```
+* Send the csv file back to us after finishing the survey.
 
 ## Overview
 

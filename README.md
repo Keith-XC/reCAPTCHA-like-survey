@@ -11,6 +11,11 @@
 * For **MacOS** or **Linux** user, please give access in command line, if it doesn't save the csv file
    ```sh
    chmod +x <filename>
+  ./<filename>  # open it from command line
+   ```
+* For **MacOS**, the binary is not comfortable to use, recommend to run the script with python
+  ```sh
+   python reCAPTCHA.py
    ```
 * Send the csv file back to us after finishing the survey.
 

@@ -4,9 +4,9 @@
 ---
 ## For Human Accessor
 * Don't recognize trucks as automobile, there is another category for truck
-* Don't recognize horse as deer, there are two categories
-* For Linux and Windows user, please use download the binary in /dist/
-* For **MacOS**  user, binary does not work without "chmod +x"
+* Don't recognize horse as deer, they are two categories
+* Please use download the binary in /dist/
+* For **MacOS** or **Linux** user, please give access "chmod +x" if it doesn't save the csv file
 
 ## Overview
 

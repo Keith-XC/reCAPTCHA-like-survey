@@ -20,7 +20,7 @@ def resource_path(relative_path):
 
 image_folder = resource_path('mimicry_result')
 
-timestart_str = time.strftime("%m-%d %H:%M", time.localtime())
+timestart_str = time.strftime("%m-%d-%H-%M", time.localtime())
 INDEX = 0
 dataset = ['cifar-10', 'f-mnist', 'mnist', 'svhn']
 dataset_dj = [None, 'DJ/f-mnist', 'DJ/mnist', 'DJ/svhn']

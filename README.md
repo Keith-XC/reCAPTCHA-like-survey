@@ -52,10 +52,13 @@ If you have packaged the application using PyInstaller:
    ```
 
 2. **Run the Executable**:
+
    ```sh
    chmod +x recaptcha-survey
    ./recaptcha-survey
    ```
+
+#### Note: Executable files are located in /dist/. **MacOS** binary does not work, since we don't have certificates from an Apple Developer Account 
 
 ## License
 

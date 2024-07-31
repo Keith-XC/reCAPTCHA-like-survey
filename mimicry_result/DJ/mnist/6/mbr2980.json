@@ -1,0 +1,11 @@
+{
+    "elapsed": "0:00:26.462220",
+    "expected_label": "6",
+    "id": "2980",
+    "misbehaviour": "True",
+    "performance": "-0.008426279",
+    "predicted_label": "5",
+    "seed": "15",
+    "sol_id": "6032",
+    "timestamp": "2024-07-31 10:32:32.942840"
+}

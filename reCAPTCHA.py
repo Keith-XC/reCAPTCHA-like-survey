@@ -7,8 +7,10 @@ import csv
 import glob
 import time
 
+timestart_str = time.strftime("%m-%d %H:%M", time.localtime())
 INDEX = 0
 dataset = ['mimicry_result/cifar-10', 'mimicry_result/f-mnist', 'mimicry_result/mnist', 'mimicry_result/svhn']
+dataset_dj = [None, 'mimicry_result/DJ/f-mnist', 'mimicry_result/DJ/mnist', 'mimicry_result/DJ/svhn']
 categories = [["airplane", "automobile", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck"],
               ["T-shirt/top",
               "Trouser",
@@ -21,29 +23,50 @@ categories = [["airplane", "automobile", "bird", "cat", "deer", "dog", "frog", "
               "Bag",
               "Ankle boot"],
               ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
-              ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]]
+              ["0 in the middle",
+               "1 in the middle",
+               "2 in the middle",
+               "3 in the middle",
+               "4 in the middle",
+               "5 in the middle",
+               "6 in the middle",
+               "7 in the middle",
+               "8 in the middle",
+               "9 in the middle"]]
 
 
 def enumerate_subfolders(root_folder, folder_depth, num_subfolders):
-    fourth_level_folders = []
+    target_level_folders = []
 
-    # Walk through the directory tree
-    for dirpath, dirnames, filenames in os.walk(root_folder):
-        # Split the current directory path to count the depth
-        relative_path = os.path.relpath(dirpath, root_folder)
-        depth = relative_path.count(os.sep)
+    if folder_depth == 0:
+        sub_paths = glob.glob(root_folder +'/*')
+        for sub_path in sub_paths:
+            image_paths = glob.glob(sub_path +'/*.png')
+            target_level_folders = target_level_folders + image_paths
 
-        # Check if the depth is 2 (3rd level from root)
-        if depth == folder_depth:
-            image_paths = glob.glob(dirpath +'/*.png')
-            fourth_level_folders.append(image_paths[0])
+    else:
+        # Walk through the directory tree
+        for dirpath, dirnames, filenames in os.walk(root_folder):
+            # Split the current directory path to count the depth
+            relative_path = os.path.relpath(dirpath, root_folder)
+            depth = relative_path.count(os.sep)
 
-    random.shuffle(fourth_level_folders)
-    return fourth_level_folders[: num_subfolders]
+            # Check if the depth is 2 (3rd level from root)
+            if depth == folder_depth:
+                image_paths = glob.glob(dirpath +'/*.png')
+                target_level_folders.append(image_paths[0])
+
+            # Check if the depth is 3 (4th level from root)
+            if depth == folder_depth + 1:
+                image_paths = glob.glob(dirpath +'/*.png')
+                target_level_folders.append(image_paths[0])
+
+    random.shuffle(target_level_folders)
+    return target_level_folders[: num_subfolders]
 
 
 def record_csv(path, result):
-    filepath = 'result.csv'
+    filepath = timestart_str + 'result.csv'
     # write CSV to file
     if not os.path.exists(filepath):
         # create csv file header
@@ -67,16 +90,26 @@ def record_csv(path, result):
 
 class ReCAPTCHAApp:
     def __init__(self, root):
-        self.time_start_str = time.strftime("%m-%d %H:%M", time.localtime())
         self.INDEX = 0
         self.root = root
         self.grid_size = 6
         self.reset_UI()
 
     def reset_UI(self):
-        self.image_paths = enumerate_subfolders(dataset[self.INDEX],
-                                                folder_depth=3,
-                                                num_subfolders=self.grid_size * self.grid_size)
+        if self.INDEX == 0:
+            # cifar-10 only has mimicry result
+            self.image_paths = enumerate_subfolders(dataset[self.INDEX],
+                                                    folder_depth=3,
+                                                    num_subfolders=self.grid_size * self.grid_size)
+        else:
+            self.image_paths = enumerate_subfolders(dataset[self.INDEX],
+                                                    folder_depth=3,
+                                                    num_subfolders=(self.grid_size * self.grid_size + 1)//2)
+            self.image_paths = self.image_paths + enumerate_subfolders(dataset_dj[self.INDEX],
+                                                    folder_depth=0,
+                                                    num_subfolders=self.grid_size * self.grid_size - (self.grid_size * self.grid_size + 1)//2)
+            random.shuffle(self.image_paths)
+
         self.selected_images = set()
         self.disabled_images = dict()
         self.current_digit = 0
@@ -86,9 +119,8 @@ class ReCAPTCHAApp:
         self.display_images()
 
     def create_widgets(self):
-        self.label = tk.Label(self.root, text=f"Select all images containing >>> {categories[self.INDEX][self.current_digit]} <<<\n " +
-                                                "The unselected images will be regarded as unknown type.\n" +
-                                                "Press choose carefully, re-selection is not supported :)"
+        self.label = tk.Label(self.root, text=f"Select all images containing \n>>> {categories[self.INDEX][self.current_digit]} <<<\n " +
+                                               "Choose carefully, re-selection is not supported :)"
                                               , font=("Helvetica", 16))
         self.label.pack(pady=10)
 
@@ -152,9 +184,8 @@ class ReCAPTCHAApp:
                 self.root.quit()
 
         else:
-            self.label.config(text=f"Select all images containing >>> {categories[self.INDEX][self.current_digit]} <<<\n " +
-                                                "The unselected images will be regarded as unknown type.\n" +
-                                                "Press choose carefully, re-selection is not supported :)")
+            self.label.config(text=f"Select all images containing \n>>> {categories[self.INDEX][self.current_digit]} <<<\n " +
+                                                "Choose carefully, re-selection is not supported :)")
 
     def clear_widgets(self):
         for widget in self.root.winfo_children():

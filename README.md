@@ -3,7 +3,7 @@
 
 ---
 ## For Human Accessor
-* Please use download the binary in /dist/
+* Please use the binary in /dist/
 * The survey takes about 10 minutes
 * There are **4** groups of images and **10** categories for each group.
 * Don't recognize trucks as automobile, there is another category for truck
